@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +15,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using WebApi.Models;
 
 namespace WebApi
@@ -30,6 +35,13 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // So to use the AppSettings inside our application like controllers and stuff we need to do this.
+            //Inject appsetting
+
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+
+
             services.AddControllers();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
@@ -56,10 +68,39 @@ namespace WebApi
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("http://localhost:4200".ToString()).AllowAnyHeader().AllowAnyMethod();
                     });
 
             });
+            // JWT authehtication 
+
+            var comb = "1234567890123456";
+
+            //var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings : JWT_Secret"].ToString());
+
+
+            var key = Encoding.UTF8.GetBytes("1234567890123456".ToString());
+
+            services.AddAuthentication(x =>
+           {
+               x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+               x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+           }).AddJwtBearer(x =>
+          {
+              x.RequireHttpsMetadata = false;
+              x.SaveToken = false;
+              x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+              {
+                  ValidateIssuerSigningKey = true,
+                  IssuerSigningKey = new SymmetricSecurityKey(key),
+                  ValidateIssuer = false,
+                  ValidateAudience = false,
+                  ClockSkew = TimeSpan.Zero
+              };
+
+          }) ;
 
         }
 

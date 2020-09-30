@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jNERYkgPZvexHH1xdsf4F12p45QMcZxZSvUVrR37UiZ5vzWDvSGIXPAOaplep3z5ScbV35PYF7B4NKIB5V0OPA==",
+  "dgSpecHash": "vh1GGs4Hz8AxugblIyTDgTCg8NH439rUvYEQw1AGjnMwUTLLf+cjOAp4Pg1qz3xGr0Fz4VSrkB3g/vL/CRyKyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Owner\\source\\repos\\WebApi\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Owner\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\Owner\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\Owner\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.7\\microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",
     "C:\\Users\\Owner\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.7\\microsoft.aspnetcore.cryptography.keyderivation.3.1.7.nupkg.sha512",

@@ -50,7 +50,9 @@ namespace WebApi
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
 
-            services.AddIdentityCore<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+            services.AddIdentityCore<ApplicationUser>().
+                AddRoles<IdentityRole>().
+                AddEntityFrameworkStores<AuthenticationContext>();
 
 
             services.Configure<IdentityOptions>(options =>

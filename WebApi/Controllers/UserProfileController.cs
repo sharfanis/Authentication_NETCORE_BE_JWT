@@ -42,5 +42,38 @@ namespace WebApi.Controllers
 
         }
 
+        [HttpGet]
+        [Authorize(Roles ="Admin")]
+        [Route("ForAdmin")]
+
+        public string GetForAdmin()
+        {
+            return "Web Mthod for admin";
+
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Level1Customer")]
+        [Route("ForLevel1Customer")]
+
+        public string GetLevel1Customer()
+        {
+            return "Web Mthod for Level 1 Customer";
+
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,Level1Customer")]
+        [Route("ForAdminOrCustomer")]
+
+        public string GetAdminOrCustomer()
+        {
+            return "Web Mthod for admin or Level 1 Customer";
+
+        }
+
+
     }
 }

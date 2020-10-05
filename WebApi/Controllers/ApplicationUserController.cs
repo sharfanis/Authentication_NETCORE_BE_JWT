@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Models;
@@ -46,6 +47,8 @@ namespace WebApi.Controllers
         // Post: /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel userModel)
         {
+            userModel.Role = "Level2Customer";
+
             var applicationUser = new ApplicationUser()
             {
                 UserName = userModel.UserName,
@@ -56,6 +59,8 @@ namespace WebApi.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, userModel.Password);
+                //Adding the roles
+                await _userManager.AddToRoleAsync(applicationUser, userModel.Role);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -75,11 +80,17 @@ namespace WebApi.Controllers
 
             if( user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
             {
+                // Get role assigned to the user.
+                var role = await _userManager.GetRolesAsync(user);
+                IdentityOptions _options = new IdentityOptions();
+
+
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[] {
 
-                        new Claim("UserID", user.Id.ToString())
+                        new Claim("UserID", user.Id.ToString()),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType , role.FirstOrDefault())
                     }),
 
                     Expires = DateTime.UtcNow.AddMinutes(5),

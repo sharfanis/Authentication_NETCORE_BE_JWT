@@ -7,3 +7,5 @@ WebApi/obj/Debug/netcoreapp3.1/WebApi.pdb
 *.suo
 *.dll
 *.pdb
+WebApi/bin/Debug/netcoreapp3.1/WebApi.dll
+*.suo

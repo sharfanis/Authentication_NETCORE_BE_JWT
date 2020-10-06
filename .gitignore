@@ -1,11 +1,12 @@
 <<<<<<< HEAD
-﻿*.pdb
-=======
 ﻿WebApi/obj/Debug/netcoreapp3.1/WebApi.csprojAssemblyReference.cache
->>>>>>> fa0ceb7... chore(): git ignore cache files
-WebApi/bin/Debug/netcoreapp3.1/WebApi.pdb
 WebApi/obj/Debug/netcoreapp3.1/WebApi.assets.cache
-WebApi/obj/Debug/netcoreapp3.1/WebApi.csprojAssemblyReference.cache
+WebApi/obj/Debug/netcoreapp3.1/WebApi.csproj.CoreCompileInputs.cache
+WebApi/obj/Debug/netcoreapp3.1/WebApi.csproj.FileListAbsolute.txt
+WebApi/obj/Debug/netcoreapp3.1/WebApi.dll
 WebApi/obj/Debug/netcoreapp3.1/WebApi.pdb
 *.suo
+*.dll
+*.pdb
 WebApi/bin/Debug/netcoreapp3.1/WebApi.dll
+*.suo

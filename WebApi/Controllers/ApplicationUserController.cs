@@ -34,11 +34,11 @@ namespace WebApi.Controllers
 
 
         [HttpGet]
-        [Route("test")]
+        [Route("welcome")]
 
         public string test()
         {
-            return "shabih";
+            return "Welcome to Family API Server.";
         }
 
 

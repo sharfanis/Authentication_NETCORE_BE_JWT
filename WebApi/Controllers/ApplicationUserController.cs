@@ -38,7 +38,7 @@ namespace WebApi.Controllers
 
         public string test()
         {
-            return "Welcome to Sharfani Family API Server.";
+            return "Welcome to Family API Backend .";
         }
 
 

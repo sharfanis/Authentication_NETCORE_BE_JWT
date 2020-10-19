@@ -24,7 +24,7 @@ namespace WebApi
     public class Startup
     {
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -67,21 +67,21 @@ namespace WebApi
 
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(
+                options.AddPolicy( "AllowAll",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200".ToString()).AllowAnyHeader().AllowAnyMethod();
+                        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                     });
 
             });
             // JWT authehtication 
 
-            var comb = "1234567890123456";
+            var comb = "20e90447-43f0-44ab-be39-6319ac1dd3fb1d85fa45-0923-467d-bb25-12a0b76cc678";
 
             //var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings : JWT_Secret"].ToString());
 
 
-            var key = Encoding.UTF8.GetBytes("1234567890123456".ToString());
+            var key = Encoding.UTF8.GetBytes("20e90447-43f0-44ab-be39-6319ac1dd3fb1d85fa45-0923-467d-bb25-12a0b76cc678".ToString());
 
             services.AddAuthentication(x =>
            {
@@ -133,7 +133,7 @@ namespace WebApi
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 

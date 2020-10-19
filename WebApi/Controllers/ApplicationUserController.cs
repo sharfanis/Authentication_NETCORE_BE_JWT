@@ -38,7 +38,7 @@ namespace WebApi.Controllers
 
         public string test()
         {
-            return "Welcome to Family API Server.";
+            return "Welcome to Sharfani Family API Server.";
         }
 
 
@@ -47,7 +47,7 @@ namespace WebApi.Controllers
         // Post: /api/ApplicationUser/Register
         public async Task<Object> PostApplicationUser(ApplicationUserModel userModel)
         {
-            userModel.Role = "Level2Customer";
+            userModel.Role = "Level1Customer";
 
             var applicationUser = new ApplicationUser()
             {
